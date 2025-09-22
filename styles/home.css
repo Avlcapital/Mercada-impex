@@ -1,0 +1,40 @@
+/* Global Styles */
+body { margin:0; font-family:Arial, sans-serif; color:#538aeb; }
+header { background: transparent; position: fixed; width: 90%; color: white; padding:1rem 2rem; z-index: 1000; height: 100%;}
+.navbar { display:flex; justify-content:space-between; align-items:center; width: 100%; }
+.nav-links { list-style:none; display:flex; gap:20px; }
+.nav-links a { color:white; text-decoration:none; font-weight:bold; }
+.nav-links li{ display: inline-block;}
+.btn { background:#D4AF37; color:#538aeb; padding:0.6rem 1.2rem; border-radius:4px; }
+.hamburger { display:none; font-size:28px; cursor:pointer; }
+
+/* Hero */
+#hero { background:url("../images/hero.jpg") center/cover no-repeat; color:white; text-align:center; padding:120px 20px; height: 350px; }
+
+#hero p {
+  max-width: 800px;
+  margin: 20px auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Services */
+#services-preview { background:#F8F9FA; padding:50px 20px; text-align:center; }
+.cards { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+.card { background:white; padding:20px; border:1px solid #ddd; width:200px; border-radius:8px; }
+
+#about-preview {
+  background: #F8F9FA;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Footer */
+footer { background:#538aeb; color:white; text-align:center; padding:20px; }
+
+/* Responsive */
+@media(max-width:768px){
+  .nav-links{display:none; flex-direction:column; background:#538aeb; position:absolute; top:60px; right:0; padding:20px;}
+  .nav-links.show{display:flex;}
+  .hamburger{display:block;}
+}
