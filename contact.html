@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Mercada Impex Limited</title>
+  <link rel="stylesheet" href="styles/contact.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Mercada Impex</div>
+      <ul class="nav-links" id="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="beverages.html">Beverages</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html" class="active btn">Contact</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you! Reach out via phone, email, or our office location below.</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-container">
+    <!-- Left: Contact Info -->
+    <div class="contact-info">
+      <h2>Our Contact Details</h2>
+      <p><strong>Mobile:</strong> <a href="tel:+254700123456">+254 700 123 456</a></p>
+      <p><strong>Email:</strong> <a href="mailto:mercadaimpex@gmail.com">mercadaimpex@gmail.com</a></p>
+      <p><strong>Location:</strong> 
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Lower+Duplex+Apartments+Upperhill&hl=en" target="_blank">
+  Lower Duplex Apartments, Upperhill
+</a>
+
+      </p>
+    </div>
+
+    <!-- Right: Contact Form -->
+    <div class="contact-form">
+      <h2>Send Us a Message</h2>
+      <!-- Replace "your_form_id" with your actual Formspree endpoint -->
+      <form action="https://formspree.io/f/your_form_id" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="_replyto" placeholder="Your Email" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" placeholder="Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Google Maps Embed -->
+  <section class="map">
+    <h2>Find Us Here</h2>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.856697676808!2d36.817!3d-1.300!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f114ac1d6c6b1%3A0x3a26f0d7f61f5b8a!2sLower%20Duplex%20Apartments%2C%20Upperhill!5e0!3m2!1sen!2ske!4v1705000000000"
+      width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mercada Impex Limited | All Rights Reserved</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
