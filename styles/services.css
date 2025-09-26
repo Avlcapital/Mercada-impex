@@ -44,7 +44,7 @@ header {
 
 .btn {
   background: #D4AF37;
-  color: #001F54;
+  color: #538aeb;
   padding: 0.6rem 1.2rem;
   border-radius: 4px;
 }
@@ -107,7 +107,7 @@ header {
 
 /* Footer */
 footer {
-  background: #001F54;
+  background: #538aeb;
   color: white;
   text-align: center;
   padding: 20px;
@@ -118,7 +118,7 @@ footer {
   .nav-links {
     display: none;
     flex-direction: column;
-    background: rgba(0, 31, 84, 0.95);
+    background: #538aeb;
     position: absolute;
     top: 60px;
     right: 0;
