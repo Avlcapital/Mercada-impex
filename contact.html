@@ -19,6 +19,7 @@
         <li><a href="contact.html" class="active btn">Contact</a></li>
       </ul>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
+      
     </nav>
   </header>
 
@@ -47,7 +48,7 @@
     <div class="contact-form">
       <h2>Send Us a Message</h2>
       <!-- Replace "your_form_id" with your actual Formspree endpoint -->
-      <form action="https://formspree.io/f/your_form_id" method="POST">
+      <form action="send.php" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="_replyto" placeholder="Your Email" required>
         <input type="text" name="subject" placeholder="Subject" required>
