@@ -72,43 +72,46 @@ header {
   margin-top: 10px;
 }
 
-/* Beverages Grid */
-.beverages {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+/* Story Sections */
+.story {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
   padding: 60px 20px;
+  flex-wrap: wrap;
 }
 
-.brand-card {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.2s ease;
+.story.reverse {
+  flex-direction: row-reverse;
 }
 
-.brand-card:hover {
-  transform: translateY(-5px);
+.story-img {
+  flex: 1;
+  min-width: 300px;
 }
 
-.brand-card img {
+.story-img img {
   width: 100%;
-  height: 150px;
+  border-radius: 8px;
   object-fit: cover;
-  border-radius: 6px;
 }
 
-.brand-card h3 {
-  margin: 15px 0 10px;
-  color:#538aeb;
+.story-text {
+  flex: 1;
+  min-width: 300px;
 }
 
-.brand-card p {
-  font-size: 0.95rem;
-  line-height: 1.4;
+.story-text h2 {
+  color: #538aeb;
+  margin-bottom: 15px;
 }
+
+.story-text p {
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
 
 /* Footer */
 footer {
@@ -130,7 +133,7 @@ footer {
 }
 
 .social-icons a:hover {
-  color: #D4AF37; /* Gold on hover */
+  color: #D4AF37;
 }
 
 /* Responsive */
@@ -152,5 +155,13 @@ footer {
 
   .hamburger {
     display: block;
+  }
+
+  .story {
+    flex-direction: column;
+  }
+
+  .story.reverse {
+    flex-direction: column;
   }
 }
