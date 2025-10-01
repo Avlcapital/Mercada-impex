@@ -112,6 +112,45 @@ header {
   font-size: 1.05rem;
 }
 
+/* Pickup Section */
+.pickup {
+  background: #F8F9FA;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.pickup h2 {
+  color: #538aeb;
+  margin-bottom: 15px;
+}
+
+.pickup p {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.pickup-link {
+  display: inline-block;
+  background: #D4AF37;
+  color: #001F54;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.pickup-link:hover {
+  background: #c29b2e;
+}
+
+.map-container {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
 
 /* Footer */
 footer {
