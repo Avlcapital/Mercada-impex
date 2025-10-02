@@ -210,8 +210,8 @@ footer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  padding: 60px 20px;
-  max-width: 1200px;
+  padding: 40px 10px;
+  max-width: 100px;
   margin: 0 auto;
 }
 
