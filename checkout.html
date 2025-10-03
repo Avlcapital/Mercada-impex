@@ -67,13 +67,13 @@
 
         if (!res.ok) throw new Error(data.message || 'Payment init failed');
 
-        statusEl.textContent = '✅ Check your phone for the M-Pesa prompt...';
+        statusEl.textContent = 'Check your phone for the M-Pesa prompt...';
         merchantRequestId = data.merchantRequestId;
 
         // Poll for result
         pollStatus(merchantRequestId);
       } catch (err) {
-        statusEl.textContent = `❌ ${err.message}`;
+        statusEl.textContent = ` ${err.message}`;
       }
     });
 
@@ -97,16 +97,16 @@
             location.href = `success.html?${q.toString()}`;
           } else if (data.status === 'FAILED'){
             clearInterval(interval);
-            statusEl.textContent = '❌ Payment failed or was cancelled.';
+            statusEl.textContent = 'Payment failed or was cancelled.';
           } else {
-            statusEl.textContent = '⏳ Waiting for confirmation...';
+            statusEl.textContent = 'Waiting for confirmation...';
           }
         }catch(e){
           // Keep polling quietly
         }
         if (attempts > 60){ // ~2 minutes
           clearInterval(interval);
-          statusEl.textContent = '⌛ Timed out waiting for confirmation. If charged, keep your M-Pesa SMS as proof.';
+          statusEl.textContent = 'Timed out waiting for confirmation. If charged, keep your M-Pesa SMS as proof.';
         }
       }, 2000);
     }
