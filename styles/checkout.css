@@ -1,0 +1,20 @@
+body { margin:0; font-family: Arial, sans-serif; color:#3B2F2F; background:#FDF9F6; }
+.checkout-header { display:flex; align-items:center; gap:12px; padding:16px 20px; background:#fff; position:sticky; top:0; border-bottom:1px solid #eee; }
+.checkout-header img { height:42px; }
+.checkout-header h1 { margin:0; font-size:1.2rem; color:#8B3A1A; }
+
+.checkout { max-width: 900px; margin: 30px auto; display:grid; grid-template-columns: 1fr 1fr; gap:28px; padding: 0 16px; }
+.summary { background:#fff; border:1px solid #eee; border-radius:10px; padding:20px; }
+.summary h2{ margin-top:0; color:#8B3A1A; }
+.pickup-note { background:#fff8e6; padding:10px; border-radius:6px; border:1px dashed #D4AF37; }
+
+.form { background:#fff; border:1px solid #eee; border-radius:10px; padding:20px; display:flex; flex-direction:column; gap:10px; }
+.form label{ font-weight:bold; }
+.form input{ padding:12px; border:1px solid #ddd; border-radius:6px; font-size:1rem; }
+.btn { background:#C65D2C; color:#fff; border:none; padding:12px; border-radius:6px; font-weight:bold; cursor:pointer; }
+.btn:hover { background:#D4AF37; color:#3B2F2F; }
+.status { min-height:20px; margin-top:8px; }
+
+@media(max-width: 800px){
+  .checkout { grid-template-columns: 1fr; }
+}

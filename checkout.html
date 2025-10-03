@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout | Mercada Impex</title>
+  <link rel="stylesheet" href="styles/checkout.css" />
+</head>
+<body>
+  <header class="checkout-header">
+    <a href="index.html" class="brand"><img src="images/logo.jpg" alt="Mercada Impex" /></a>
+    <h1>Secure Checkout</h1>
+  </header>
+
+  <main class="checkout">
+    <div class="summary">
+      <h2>Order Summary</h2>
+      <p><strong>Product:</strong> <span id="product-name">—</span></p>
+      <p><strong>Amount:</strong> KSh <span id="product-amount">—</span></p>
+      <p class="pickup-note">Pickup station: <strong>Oro Restaurant & Lounge (Upperhill)</strong></p>
+    </div>
+
+    <form id="checkout-form" class="form">
+      <label>M-Pesa Phone (2547XXXXXXXX)</label>
+      <input type="tel" id="phone" name="phone" placeholder="2547XXXXXXXX" required pattern="^2547\d{8}$" />
+
+      <label>Email (for receipt & pickup details)</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <button type="submit" class="btn">Pay with M-Pesa</button>
+      <p id="status" class="status"></p>
+    </form>
+  </main>
+
+  <script>
+    // Get query params
+    const params = new URLSearchParams(location.search);
+    const product = params.get('product') || 'Johari Gin';
+    const amount  = params.get('amount')  || '5390';
+
+    document.getElementById('product-name').textContent = product;
+    document.getElementById('product-amount').textContent = amount;
+
+    const form = document.getElementById('checkout-form');
+    const statusEl = document.getElementById('status');
+
+    let merchantRequestId = null;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Initializing payment...';
+
+      const body = {
+        phone: document.getElementById('phone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        product,
+        amount: Number(amount)
+      };
+
+      try {
+        const res = await fetch('/api/stkpush', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.message || 'Payment init failed');
+
+        statusEl.textContent = '✅ Check your phone for the M-Pesa prompt...';
+        merchantRequestId = data.merchantRequestId;
+
+        // Poll for result
+        pollStatus(merchantRequestId);
+      } catch (err) {
+        statusEl.textContent = `❌ ${err.message}`;
+      }
+    });
+
+    async function pollStatus(id){
+      let attempts = 0;
+      const interval = setInterval(async () => {
+        attempts++;
+        try{
+          const res = await fetch(`/api/status?merchantRequestId=${encodeURIComponent(id)}`);
+          const data = await res.json();
+
+          if (data.status === 'SUCCESS'){
+            clearInterval(interval);
+            // Redirect to success page with details
+            const q = new URLSearchParams({
+              product,
+              amount,
+              receipt: data.receipt,
+              phone: data.phone
+            });
+            location.href = `success.html?${q.toString()}`;
+          } else if (data.status === 'FAILED'){
+            clearInterval(interval);
+            statusEl.textContent = '❌ Payment failed or was cancelled.';
+          } else {
+            statusEl.textContent = '⏳ Waiting for confirmation...';
+          }
+        }catch(e){
+          // Keep polling quietly
+        }
+        if (attempts > 60){ // ~2 minutes
+          clearInterval(interval);
+          statusEl.textContent = '⌛ Timed out waiting for confirmation. If charged, keep your M-Pesa SMS as proof.';
+        }
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
