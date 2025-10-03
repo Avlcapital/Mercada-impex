@@ -10,12 +10,17 @@
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo">Mercada Impex</div>
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.jpg" alt="Mercada Impex Logo">
+        </a>
+      </div>
+
       <ul class="nav-links" id="menu">
-        <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="services.html">Services</a></li>
-        <li><a href="beverages.html" class="active">Our products</a></li>
+        <li><a href="beverages.html" class="active">Our Products</a></li>
         <li><a href="insights.html">Insights</a></li>
         <li><a href="contact.html" class="btn">Contact</a></li>
       </ul>
@@ -46,19 +51,13 @@
         View
       </button>
     </div>
-
-    
-    
-
-    
   </section>
 
-  <!-- Reusable Quick View Modal -->
+  <!-- Quick View Modal -->
   <div id="quickViewModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
 
-      <!-- Image Slider -->
       <div class="slider">
         <button class="prev">&#10094;</button>
         <img id="modal-img" src="" alt="Product Image">
@@ -68,7 +67,11 @@
       <h3 id="modal-title"></h3>
       <p id="modal-desc"></p>
       <p class="price" id="modal-price"></p>
-      <a id="modal-link" href="#" class="btn">Go to Full Page</a>
+
+      <div class="modal-buttons">
+        <a id="modal-link" href="#" class="btn">Go to Full Page</a>
+        <a id="order-now" href="#" target="_blank" class="btn order-btn">Order Now</a>
+      </div>
     </div>
   </div>
 

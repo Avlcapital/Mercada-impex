@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  color: #001F54;
+  color: #3B2F2F;
   padding-top: 80px; /* offset for fixed navbar */
 }
 
@@ -22,10 +22,9 @@ header {
   align-items: center;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 1.3rem;
-  color: black;
+.logo img {
+  height: 50px;
+  width: auto;
 }
 
 .nav-links {
@@ -37,34 +36,47 @@ header {
 }
 
 .nav-links a {
-  color: black;
+  color: #8B3A1A; /* Mercada brown */
   text-decoration: none;
   font-weight: bold;
 }
 
+.nav-links a.active,
+.nav-links a:hover {
+  color: #C65D2C; /* terracotta */
+}
+
 .btn {
-  background: #D4AF37;
-  color: #538aeb;
+  background: #C65D2C;
+  color: white;
   padding: 0.6rem 1.2rem;
   border-radius: 4px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #D4AF37;
+  color: #3B2F2F;
 }
 
 .hamburger {
   display: none;
   cursor: pointer;
   font-size: 28px;
-  color: black;
+  color: #8B3A1A;
 }
 
 /* Hero */
 .hero {
-  background: #F8F9FA;
+  background: #FDF9F6;
   text-align: center;
   padding: 100px 20px;
+  color: #5A2E1B;
 }
 
 .hero h1 {
   font-size: 2.5rem;
+  color: #8B3A1A;
 }
 
 .hero p {
@@ -92,6 +104,11 @@ header {
 .service-text {
   flex: 1;
   min-width: 280px;
+  color: #3B2F2F;
+}
+
+.service-text h2 {
+  color: #C65D2C;
 }
 
 .service-img {
@@ -107,7 +124,7 @@ header {
 
 /* Footer */
 footer {
-  background: #538aeb;
+  background: #5A2E1B;
   color: white;
   text-align: center;
   padding: 20px;
@@ -125,7 +142,7 @@ footer {
 }
 
 .social-icons a:hover {
-  color: #D4AF37; /* Gold on hover */
+  color: #D4AF37;
 }
 
 /* Responsive */
@@ -133,7 +150,7 @@ footer {
   .nav-links {
     display: none;
     flex-direction: column;
-    background: #538aeb;
+    background: #8B3A1A;
     position: absolute;
     top: 60px;
     right: 0;
@@ -143,6 +160,10 @@ footer {
 
   .nav-links.show {
     display: flex;
+  }
+
+  .nav-links a {
+    color: white;
   }
 
   .hamburger {

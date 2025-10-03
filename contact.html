@@ -5,30 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Mercada Impex Limited</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <link rel="stylesheet" href="styles/contact.css">
 </head>
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo">Mercada Impex</div>
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.jpg" alt="Mercada Impex Logo">
+        </a>
+      </div>
       <ul class="nav-links" id="menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="services.html">Services</a></li>
-        <li><a href="beverages.html">Our products</a></li>
+        <li><a href="beverages.html">Our Products</a></li>
         <li><a href="insights.html">Insights</a></li>
         <li><a href="contact.html" class="active btn">Contact</a></li>
       </ul>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
-
     </nav>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <h1>Contact Us</h1>
-    <p>We’d love to hear from you! Reach out via phone, email, or our office location below.</p>
+    <p>We’d love to hear from you! Reach out via phone, email, or visit our office.</p>
   </section>
 
   <!-- Contact Section -->
@@ -36,20 +39,18 @@
     <!-- Left: Contact Info -->
     <div class="contact-info">
       <h2>Our Contact Details</h2>
-      <p><strong>Mobile:</strong> <a href="tel:+254 714109708">+254 714109708</a></p>
+      <p><strong>Mobile:</strong> <a href="tel:+254714109708">+254 714 109 708</a></p>
       <p><strong>Email:</strong> <a href="mailto:info@mercadaimpex.com">info@mercadaimpex.com</a></p>
       <p><strong>Location:</strong> 
         <a href="https://www.google.com/maps/dir/?api=1&destination=Lower+Duplex+Apartments+Upperhill&hl=en" target="_blank">
-  Lower Duplex Apartments, Upperhill
-</a>
-
+          Lower Duplex Apartments, Upperhill
+        </a>
       </p>
     </div>
 
     <!-- Right: Contact Form -->
     <div class="contact-form">
       <h2>Send Us a Message</h2>
-      <!-- Replace "your_form_id" with your actual Formspree endpoint -->
       <form action="send.php" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="_replyto" placeholder="Your Email" required>
@@ -60,16 +61,14 @@
     </div>
   </section>
 
-
-
   <footer>
     <p>&copy; 2025 Mercada Impex Limited | All Rights Reserved</p>
     <div class="social-icons">
-    <a href="https://www.facebook.com/profile.php?id=61580816012074&sfnsn=wa" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/johariginkenya?utm_source=qr&igsh=azFkdHNydWo4cWIy" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
-    <a href="https://www.linkedin.com/company/yourcompany" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-  </div>
+      <a href="https://www.facebook.com/profile.php?id=61580816012074&sfnsn=wa" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/johariginkenya?utm_source=qr&igsh=azFkdHNydWo4cWIy" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/company/yourcompany" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
   </footer>
 
   <script src="js/main.js"></script>

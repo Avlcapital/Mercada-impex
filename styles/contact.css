@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  color: #001F54;
+  color: #3B2F2F; /* deep brown */
   padding-top: 80px; /* offset for fixed navbar */
 }
 
@@ -22,10 +22,8 @@ header {
   align-items: center;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 1.3rem;
-  color: black;
+.logo img {
+  height: 45px;
 }
 
 .nav-links {
@@ -37,14 +35,14 @@ header {
 }
 
 .nav-links a {
-  color: black;
+  color: #3B2F2F;
   text-decoration: none;
   font-weight: bold;
 }
 
 .btn {
-  background: #D4AF37;
-  color: #001F54;
+  background: #C65D2C; /* terracotta */
+  color: white;
   padding: 0.6rem 1.2rem;
   border-radius: 4px;
 }
@@ -53,18 +51,19 @@ header {
   display: none;
   cursor: pointer;
   font-size: 28px;
-  color: black;
+  color: #3B2F2F;
 }
 
 /* Hero */
 .hero {
-  background: #F8F9FA;
+  background: #FDF9F6;
   text-align: center;
   padding: 100px 20px;
 }
 
 .hero h1 {
   font-size: 2.5rem;
+  color: #8B3A1A;
 }
 
 .hero p {
@@ -87,11 +86,12 @@ header {
 }
 
 .contact-info a {
-  color: #001F54;
+  color: #C65D2C;
   text-decoration: none;
 }
 
 .contact-info a:hover {
+  color: #D4AF37; /* gold */
   text-decoration: underline;
 }
 
@@ -103,7 +103,7 @@ header {
 
 .contact-form input,
 .contact-form textarea {
-  width: 100%;
+  width: 95%;
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -111,8 +111,8 @@ header {
 }
 
 .contact-form button {
-  background: #D4AF37;
-  color: black;
+  background: #C65D2C; /* terracotta */
+  color: white;
   padding: 12px;
   border: none;
   border-radius: 6px;
@@ -122,12 +122,13 @@ header {
 }
 
 .contact-form button:hover {
-  background: #b6932c;
+  background: #D4AF37; /* gold */
+  color: #3B2F2F;
 }
 
 /* Footer */
 footer {
-  background: #538aeb;
+  background: #3B2F2F; /* deep brown */
   color: white;
   text-align: center;
   padding: 20px;
@@ -145,7 +146,7 @@ footer {
 }
 
 .social-icons a:hover {
-  color: #D4AF37; /* Gold on hover */
+  color: #D4AF37;
 }
 
 /* Responsive */
@@ -153,7 +154,7 @@ footer {
   .nav-links {
     display: none;
     flex-direction: column;
-    background: #538aeb;
+    background: #3B2F2F;
     position: absolute;
     top: 60px;
     right: 0;
