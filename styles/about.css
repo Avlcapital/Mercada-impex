@@ -104,10 +104,12 @@ header {
 .about .image {
   flex: 1;
   min-width: 300px;
+  
 }
 
 .about .image img {
-  width: 100%;
+  width: 80%;
+  height: 60%;
   border-radius: 8px;
 }
 
