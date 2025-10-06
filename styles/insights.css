@@ -159,7 +159,7 @@ header {
 
 /* Footer */
 footer {
-  background: #3B2F2F;
+  background: #5A2E1B;
   color: white;
   text-align: center;
   padding: 20px;
@@ -182,13 +182,16 @@ footer {
   .nav-links {
     display: none;
     flex-direction: column;
-    background: #3B2F2F;
+    background: #8B3A1A;
     position: absolute;
     top: 60px; right: 0;
     width: 200px; padding: 20px;
   }
   .nav-links.show {
     display: flex;
+  }
+  .nav-links a {
+    color: white;
   }
   .hamburger {
     display: block;

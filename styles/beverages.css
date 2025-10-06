@@ -3,6 +3,7 @@ body {
   margin: 0;
   color: #3B2F2F;
   padding-top: 80px;
+  background: #fff;
 }
 
 /* Navbar */
@@ -11,15 +12,18 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 90%;
+  width: 100%; /* Full width */
   z-index: 1000;
   padding: 1rem 2rem;
+  box-sizing: border-box;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .logo img {
@@ -31,6 +35,8 @@ header {
   list-style: none;
   display: flex;
   gap: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
@@ -49,6 +55,7 @@ header {
   color: white;
   padding: 0.6rem 1.2rem;
   border-radius: 4px;
+  transition: 0.3s ease;
 }
 
 .btn:hover {
@@ -83,11 +90,12 @@ header {
 /* Grid Layout */
 .beverage-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
-  padding: 60px 20px;
-  max-width: 100px;
+  padding: 40px 20px;
+  max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .card {
@@ -106,7 +114,8 @@ header {
 
 .card img {
   width: 100%;
-  height: 200px;
+  height: auto;
+  max-height: 220px;
   object-fit: cover;
   border-radius: 6px;
   margin-bottom: 15px;
@@ -131,20 +140,22 @@ header {
   position: fixed;
   z-index: 2000;
   left: 0;
-  top: 0;
+  top: 2px;
   width: 100%;
-  height: 100%;
+  height: 80%;
   background: rgba(0,0,0,0.6);
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .modal-content {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  max-width: 300px;
-  width: 90%;
+  max-width: 500px;
+  width: 100%;
   text-align: center;
   position: relative;
 }
@@ -226,32 +237,6 @@ footer {
   color: #D4AF37;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background: #8B3A1A;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
-    padding: 20px;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-links a {
-    color: white;
-  }
-
-  .hamburger {
-    display: block;
-  }
-}
-
 /* Story Sections */
 .story {
   display: flex;
@@ -268,7 +253,7 @@ footer {
 
 .story-img {
   flex: 1;
-  min-width: 300px;
+  min-width: 280px;
 }
 
 .story-img img {
@@ -279,7 +264,7 @@ footer {
 
 .story-text {
   flex: 1;
-  min-width: 300px;
+  min-width: 280px;
 }
 
 .story-text h2 {
@@ -333,9 +318,60 @@ footer {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .story, .story.reverse {
-    flex-direction: column;
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+  .hero {
+    padding: 70px 15px;
   }
 }
 
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #8B3A1A;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 20px;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    color: white;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .story, .story.reverse {
+    flex-direction: column;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .card img {
+    max-height: 180px;
+  }
+}
