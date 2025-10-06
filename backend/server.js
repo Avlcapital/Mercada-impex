@@ -86,7 +86,7 @@ app.post("/api/stkpush", async (req, res) => {
     });
 
     res.json({
-      message: "✅ Check your phone for M-Pesa prompt.",
+      message: "Check your phone for M-Pesa prompt.",
       merchantRequestId
     });
   } catch (err) {
@@ -173,6 +173,11 @@ app.get("/api/status", (req, res) => {
   }
   if (rec.status === "FAILED") return res.json({ status: "FAILED" });
   return res.json({ status: "PENDING" });
+});
+
+//rest Api
+app.get('/', (req, res) => {
+    res.send('API is running')
 });
 
 const PORT = process.env.PORT || 5000;

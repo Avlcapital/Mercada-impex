@@ -58,7 +58,7 @@
       };
 
       try {
-        const res = await fetch('/api/stkpush', {
+        const res = await fetch('http://localhost:5000/api/stkpush', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body)
@@ -82,7 +82,7 @@
       const interval = setInterval(async () => {
         attempts++;
         try{
-          const res = await fetch(`/api/status?merchantRequestId=${encodeURIComponent(id)}`);
+          const res = await fetch(`http://localhost:5000/api/status?merchantRequestId=${encodeURIComponent(id)}`);
           const data = await res.json();
 
           if (data.status === 'SUCCESS'){

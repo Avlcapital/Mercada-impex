@@ -1,10 +1,17 @@
 {
+  "main": "sever.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "server": "nodemon server.js",
+    "postinstall": "rm -rf ./node_modules/pdf-parse/test"
+  },
   "dependencies": {
     "axios": "^1.12.2",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "nodemailer": "^7.0.6"
+    "nodemailer": "^7.0.6",
+    "nodemon": "^3.1.10"
   }
 }
