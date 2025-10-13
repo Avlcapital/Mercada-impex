@@ -139,7 +139,7 @@ Amount: KSh ${rec.amount}
 M-Pesa Receipt: ${rec.receipt}
 
 Pickup Station:
-Oro Restaurant & Lounge, Upperhill
+Oro Restaurant & Lounge, Kilimani
 Google Maps: https://www.google.com/maps/dir/?api=1&destination=Oro+Restaurant+%26+Lounge,+Nairobi&hl=en
 
 Keep this receipt for pickup. Thank you for choosing Mercada Impex.`
@@ -158,6 +158,10 @@ Keep this receipt for pickup. Thank you for choosing Mercada Impex.`
     res.json({ ResultCode: 0, ResultDesc: "Accepted" });
   }
 });
+
+
+
+
 
 // Front-end polls this to know status
 app.get("/api/status", (req, res) => {
@@ -180,5 +184,31 @@ app.get('/', (req, res) => {
     res.send('API is running')
 });
 
+// === OPTION 1: AUTO SERVER SHUTDOWN SCHEDULER ===
+function getCurrentHour() {
+  return new Date().getHours();
+}
+
+function checkServerSchedule() {
+  const hour = getCurrentHour();
+  const now = new Date().toLocaleString();
+
+  // Shutdown between 22:00 (10PM) and 06:00 (6AM)
+  if (hour >= 22 || hour < 6) {
+    console.log(`[${now}] Outside working hours (22:00–06:00). Shutting down server...`);
+    process.exit(0); // Gracefully stop Node process
+  } else {
+    console.log(`[${now}] Within working hours (06:00–22:00). Server remains active.`);
+  }
+}
+
+// Check every hour
+setInterval(checkServerSchedule, 3600000);
+
+// === START SERVER ===
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log("Server running on port", PORT));
+app.listen(PORT, () => {
+  console.log("Server running on port", PORT);
+  // Do an initial schedule check on startup
+  checkServerSchedule();
+});
