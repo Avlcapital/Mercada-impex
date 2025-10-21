@@ -21,7 +21,7 @@
       <p class="pickup-note">Pickup station: <strong>Oro Restaurant & Lounge (Kilimani)</strong></p>
     </div>
 
-    <form id="checkout-form" class="form">
+    <!--form id="checkout-form" class="form">
       <label>M-Pesa Phone (2547XXXXXXXX)</label>
       <input type="tel" id="phone" name="phone" placeholder="2547XXXXXXXX" required pattern="^2547\d{8}$" />
 
@@ -30,7 +30,23 @@
 
       <button type="submit" class="btn">Pay with M-Pesa</button>
       <p id="status" class="status"></p>
-    </form>
+    </form-->
+
+    <form id="checkout-form" class="form">
+  <h3 class="text-lg font-semibold mb-2">Pay with M-Pesa</h3>
+
+  <div class="payment-info">
+    <p><strong>Paybill Number:</strong> 247247</p>
+    <p><strong>Account Number:</strong> 1400286787369</p>
+  </div>
+
+  <!--p class="instructions">
+    After payment, click the button below to confirm your payment.
+  </p>
+
+  <button type="submit" class="btn">Confirm Payment</button>
+  <p id="status" class="status"></p-->
+</form>
   </main>
 
   <script>

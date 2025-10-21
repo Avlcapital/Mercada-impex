@@ -194,11 +194,11 @@ function checkServerSchedule() {
   const now = new Date().toLocaleString();
 
   // Shutdown between 22:00 (10PM) and 06:00 (6AM)
-  if (hour >= 22 || hour < 6) {
-    console.log(`[${now}] Outside working hours (22:00–06:00). Shutting down server...`);
+  if (hour >= 17 || hour < 8.30) {
+    console.log(`[${now}] Outside working hours (17:00–08:30). Shutting down server...`);
     process.exit(0); // Gracefully stop Node process
   } else {
-    console.log(`[${now}] Within working hours (06:00–22:00). Server remains active.`);
+    console.log(`[${now}] Within working hours (08:30–17:00). Server remains active.`);
   }
 }
 

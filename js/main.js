@@ -18,7 +18,33 @@ document.addEventListener("DOMContentLoaded", () => {
     let images = [];
     let currentIndex = 0;
 
-    // Show product modal
+    // When opening the modal
+document.querySelectorAll(".quick-view").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    const title = e.target.dataset.title;
+    const price = e.target.dataset.price;
+    const images = e.target.dataset.images.split(",");
+    const desc = e.target.dataset.desc;
+    const link = e.target.dataset.link;
+
+    // Populate modal content
+    document.getElementById("modal-title").textContent = title;
+    document.getElementById("modal-desc").textContent = desc;
+    document.getElementById("modal-price").textContent = price;
+    document.getElementById("modal-img").src = images[0];
+    document.getElementById("modal-link").href = link;
+
+    // Dynamically update "Order Now" link with query params
+    const orderNowLink = document.getElementById("order-now");
+    const amountValue = price.replace(/[^0-9.]/g, ""); // Extract numeric value
+    orderNowLink.href = `checkout.html?product=${encodeURIComponent(title)}&amount=${encodeURIComponent(amountValue)}`;
+    
+    // Show modal
+    document.getElementById("quickViewModal").style.display = "block";
+  });
+});
+
+    //Show product modal
     document.querySelectorAll(".quick-view").forEach(button => {
       button.addEventListener("click", () => {
         modalTitle.textContent = button.dataset.title;
