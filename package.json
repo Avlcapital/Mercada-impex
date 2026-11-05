@@ -1,0 +1,1 @@
+{"name":"mercada-impex","private":true,"scripts":{"check:lines":"node scripts/check-lines.mjs"}}
