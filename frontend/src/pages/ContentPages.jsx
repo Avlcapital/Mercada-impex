@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import { services, insights, values } from "../content";
 import { useMetadata } from "../useMetadata";
 export function Home() {
-  useMetadata("Mercada Impex | Logistics & Global Trade", "Logistics, commodity advisory, and premium beverage distribution across Africa and beyond.");
+  useMetadata(
+    "Mercada Impex | Logistics & Global Trade",
+    "Logistics, commodity advisory, and premium beverage distribution across Africa and beyond.",
+  );
   return (
     <>
       <section className="hero home">
@@ -38,7 +41,10 @@ export function Home() {
   );
 }
 export function About() {
-  useMetadata("About | Mercada Impex", "Meet Mercada Impex and the values behind our global trade services.");
+  useMetadata(
+    "About | Mercada Impex",
+    "Meet Mercada Impex and the values behind our global trade services.",
+  );
   return (
     <>
       <PageHero
@@ -75,7 +81,10 @@ export function About() {
   );
 }
 export function Services() {
-  useMetadata("Services | Mercada Impex", "Explore Mercada Impex logistics, commodity advisory, and beverage distribution services.");
+  useMetadata(
+    "Services | Mercada Impex",
+    "Explore Mercada Impex logistics, commodity advisory, and beverage distribution services.",
+  );
   return (
     <>
       <PageHero title="Expertise that moves with you" eyebrow="Our services" />
@@ -95,7 +104,10 @@ export function Services() {
   );
 }
 export function Insights() {
-  useMetadata("Insights | Mercada Impex", "Read perspectives on logistics, commodities, supply chains, and African beverages.");
+  useMetadata(
+    "Insights | Mercada Impex",
+    "Read perspectives on logistics, commodities, supply chains, and African beverages.",
+  );
   return (
     <>
       <PageHero
@@ -108,7 +120,10 @@ export function Insights() {
             <img src={img} alt="" />
             <h2>{n}</h2>
             <p>{d}</p>
-            <details><summary>Read more</summary><p>{detail}</p></details>
+            <details>
+              <summary>Read more</summary>
+              <p>{detail}</p>
+            </details>
           </article>
         ))}
       </section>

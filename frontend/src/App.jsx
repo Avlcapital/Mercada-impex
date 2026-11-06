@@ -5,6 +5,9 @@ import { Cart } from "./pages/CommercePages";
 import { ProductDetail, Products } from "./features/catalog";
 import { Checkout, OrderStatus } from "./features/checkout";
 import Contact from "./pages/Contact";
+import { Login, Register } from "./features/auth/AuthPages";
+import ProtectedRoute from "./features/auth/ProtectedRoute";
+import OrderHistory from "./features/orders/OrderHistory";
 export default function App() {
   return (
     <Layout>
@@ -17,8 +20,32 @@ export default function App() {
         <Route path="/insights" element={<Insights />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/orders/:reference" element={<OrderStatus />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/account/orders"
+          element={
+            <ProtectedRoute>
+              <OrderHistory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/account/orders/:reference"
+          element={
+            <ProtectedRoute>
+              <OrderStatus />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="*"
           element={

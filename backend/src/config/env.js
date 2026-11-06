@@ -7,6 +7,7 @@ const schema = z.object({
   PORT: z.coerce.number().int().positive().default(5000),
   MONGODB_URI: z.string().min(1),
   FRONTEND_ORIGIN: z.string().default("http://localhost:5173"),
+  SESSION_TTL_DAYS: z.coerce.number().int().min(1).max(90).default(30),
   DARAJA_KEY: z.string().optional(),
   DARAJA_SECRET: z.string().optional(),
   MPESA_SHORTCODE: z.string().optional(),

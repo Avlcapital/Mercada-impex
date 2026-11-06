@@ -16,6 +16,11 @@ const item = new mongoose.Schema(
 const schema = new mongoose.Schema(
   {
     reference: { type: String, required: true, unique: true, index: true },
+    customerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Customer",
+      index: true,
+    },
     customer: { name: String, email: String, phone: String },
     items: [item],
     total: { type: Number, required: true },

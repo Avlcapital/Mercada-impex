@@ -3,19 +3,23 @@ import { connectDb } from "./config/db.js";
 import { createDaraja } from "./modules/payments/daraja.service.js";
 import { createMailer } from "./services/mailer.js";
 import { createApp } from "./app.js";
-async function start() {
-  const env = loadEnv();
-  await connectDb(env.MONGODB_URI);
-  const app = createApp({
+import { provisionCatalog } from "./modules/products/bootstrap.js";
+import { fileURLToPath } from "node:url";
+export async function start(deps = {}) {
+  const env = (deps.loadEnv || loadEnv)();
+  await (deps.connectDb || connectDb)(env.MONGODB_URI);
+  await (deps.provisionCatalog || provisionCatalog)();
+  const app = (deps.createApp || createApp)({
     env,
-    payments: createDaraja(env),
-    mailer: createMailer(env),
+    payments: (deps.createDaraja || createDaraja)(env),
+    mailer: (deps.createMailer || createMailer)(env),
   });
-  app.listen(env.PORT, () =>
+  return app.listen(env.PORT, () =>
     console.log(`Mercada API listening on ${env.PORT}`),
   );
 }
-start().catch((error) => {
-  console.error(`Startup failed: ${error.message}`);
-  process.exit(1);
-});
+if (process.argv[1] === fileURLToPath(import.meta.url))
+  start().catch((error) => {
+    console.error(`Startup failed: ${error.message}`);
+    process.exit(1);
+  });

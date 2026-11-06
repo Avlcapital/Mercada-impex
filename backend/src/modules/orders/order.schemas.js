@@ -5,11 +5,7 @@ const phone = z
   .transform((v) => (v.startsWith("0") ? `254${v.slice(1)}` : v));
 export const createOrderSchema = z.object({
   body: z.object({
-    customer: z.object({
-      name: z.string().trim().min(2).max(100),
-      email: z.string().email(),
-      phone,
-    }),
+    phone,
     items: z
       .array(
         z.object({

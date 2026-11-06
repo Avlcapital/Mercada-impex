@@ -9,7 +9,10 @@ export function createApp(deps) {
   app.disable("x-powered-by");
   app.use(helmet());
   app.use(
-    cors({ origin: deps.env.FRONTEND_ORIGIN.split(",").map((x) => x.trim()) }),
+    cors({
+      origin: deps.env.FRONTEND_ORIGIN.split(",").map((x) => x.trim()),
+      credentials: true,
+    }),
   );
   app.use(express.json({ limit: "100kb" }));
   app.use(

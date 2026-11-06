@@ -8,6 +8,8 @@ import { asyncRoute, ApiError } from "../middleware/errors.js";
 import { createOrderSchema, referenceSchema } from "./orders/order.schemas.js";
 import { createOrder } from "./orders/order.service.js";
 import { processCallback } from "./payments/callback.service.js";
+import { authenticate } from "./auth/auth.middleware.js";
+import { authRoutes } from "./auth/auth.routes.js";
 const contactSchema = z.object({
   body: z.object({
     name: z.string().trim().min(2).max(100),
@@ -18,8 +20,9 @@ const contactSchema = z.object({
   params: z.object({}),
   query: z.object({}),
 });
-export function routes({ payments, mailer }) {
+export function routes({ payments, mailer, env }) {
   const router = Router();
+  router.use("/auth", authRoutes(env));
   router.get(
     "/products",
     asyncRoute(async (_req, res) =>
@@ -41,24 +44,36 @@ export function routes({ payments, mailer }) {
   );
   router.post(
     "/orders",
+    authenticate,
     validate(createOrderSchema),
     asyncRoute(async (req, res) => {
-      const order = await createOrder(req.body, payments);
-      res
-        .status(201)
-        .json({
-          reference: order.reference,
-          total: order.total,
-          payment: { status: order.paymentStatus },
-        });
+      const order = await createOrder(req.body, req.customer, payments);
+      res.status(201).json({
+        reference: order.reference,
+        total: order.total,
+        payment: { status: order.paymentStatus },
+      });
+    }),
+  );
+  router.get(
+    "/orders",
+    authenticate,
+    asyncRoute(async (req, res) => {
+      const orders = await Order.find({ customerId: req.customer._id })
+        .sort({ createdAt: -1 })
+        .select("reference total paymentStatus pickupLocation createdAt")
+        .lean();
+      res.json(orders);
     }),
   );
   router.get(
     "/orders/:reference",
+    authenticate,
     validate(referenceSchema),
     asyncRoute(async (req, res) => {
       const order = await Order.findOne({
         reference: req.params.reference,
+        customerId: req.customer._id,
       }).lean();
       if (!order) throw new ApiError(404, "Order not found.");
       res.json({

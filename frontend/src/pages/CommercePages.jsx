@@ -4,7 +4,9 @@ import { request } from "../api";
 import { useCart } from "../features/cart/CartContext";
 import { PageHero } from "./ContentPages";
 import { useMetadata } from "../useMetadata";
-export const pickupUrl = "https://www.google.com/maps/dir/?api=1&destination=Oro+Restaurant+%26+Lounge,+Nairobi&hl=en";
+import { useAuth } from "../features/auth/AuthContext";
+export const pickupUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=Oro+Restaurant+%26+Lounge,+Nairobi&hl=en";
 const money = (n) =>
   new Intl.NumberFormat("en-KE", {
     style: "currency",
@@ -12,7 +14,10 @@ const money = (n) =>
     maximumFractionDigits: 0,
   }).format(n);
 export function Products() {
-  useMetadata("Products | Mercada Impex", "Discover Johari Gin, a premium Tanzanian spirit distributed by Mercada Impex.");
+  useMetadata(
+    "Products | Mercada Impex",
+    "Discover Johari Gin, a premium Tanzanian spirit distributed by Mercada Impex.",
+  );
   const [state, setState] = useState({ loading: true });
   useEffect(() => {
     request("/products")
@@ -36,7 +41,12 @@ export function Products() {
         {state.products?.map((p) => (
           <ProductCard key={p._id} product={p} />
         ))}
-        {state.products?.length === 0 && <div className="notice"><p>No products are available right now.</p><button onClick={() => location.reload()}>Retry catalog</button></div>}
+        {state.products?.length === 0 && (
+          <div className="notice">
+            <p>No products are available right now.</p>
+            <button onClick={() => location.reload()}>Retry catalog</button>
+          </div>
+        )}
       </section>
     </>
   );
@@ -71,12 +81,21 @@ export function ProductDetail() {
       .catch((error) => setState({ error: error.message }));
   }, [slug]);
   const p = state.product;
-  useMetadata(p ? `${p.name} | Mercada Impex` : "Product | Mercada Impex", p?.shortDescription || "Premium beverages from Mercada Impex.");
-  if (state.loading) return <section className="section"><p role="status">Loading product…</p></section>;
+  useMetadata(
+    p ? `${p.name} | Mercada Impex` : "Product | Mercada Impex",
+    p?.shortDescription || "Premium beverages from Mercada Impex.",
+  );
+  if (state.loading)
+    return (
+      <section className="section">
+        <p role="status">Loading product…</p>
+      </section>
+    );
   if (state.error)
     return (
       <section className="section">
-        <p role="alert">{state.error}</p><Link to="/products">Return to products</Link>
+        <p role="alert">{state.error}</p>
+        <Link to="/products">Return to products</Link>
       </section>
     );
   return (
@@ -90,10 +109,19 @@ export function ProductDetail() {
         <p className="eyebrow">Johari means “jewel”</p>
         <h1>{p.name}</h1>
         <p>{p.description}</p>
-        {p.storySections?.map((section) => <section key={section.title}><h2>{section.title}</h2><p>{section.text}</p></section>)}
+        {p.storySections?.map((section) => (
+          <section key={section.title}>
+            <h2>{section.title}</h2>
+            <p>{section.text}</p>
+          </section>
+        ))}
         <h2>{money(p.price)}</h2>
         <p>
-          Pickup at <strong>Oro Restaurant & Lounge, Kilimani</strong>. <a href={pickupUrl} target="_blank" rel="noreferrer">Get directions</a>.
+          Pickup at <strong>Oro Restaurant & Lounge, Kilimani</strong>.{" "}
+          <a href={pickupUrl} target="_blank" rel="noreferrer">
+            Get directions
+          </a>
+          .
         </p>
         <button onClick={() => add(p)}>Add to cart</button>
       </div>
@@ -102,7 +130,10 @@ export function ProductDetail() {
 }
 export function Cart() {
   const cart = useCart();
-  useMetadata("Cart | Mercada Impex", "Review your Mercada Impex order before guest checkout.");
+  useMetadata(
+    "Cart | Mercada Impex",
+    "Review your Mercada Impex order before authenticated checkout.",
+  );
   if (!cart.items.length)
     return (
       <section className="section empty">
@@ -156,24 +187,23 @@ export function Cart() {
 export function Checkout() {
   const cart = useCart(),
     navigate = useNavigate();
+  const { customer } = useAuth();
   const [busy, setBusy] = useState(false),
     [error, setError] = useState("");
-  useMetadata("Checkout | Mercada Impex", "Complete secure M-Pesa guest checkout for pickup in Kilimani.");
+  useMetadata(
+    "Checkout | Mercada Impex",
+    "Complete secure M-Pesa customer checkout for pickup in Kilimani.",
+  );
   async function submit(e) {
     e.preventDefault();
     setBusy(true);
     setError("");
     const form = new FormData(e.currentTarget);
-    const customer = {
-      name: form.get("name"),
-      email: form.get("email"),
-      phone: form.get("phone"),
-    };
     try {
       const result = await request("/orders", {
         method: "POST",
         body: JSON.stringify({
-          customer,
+          phone: form.get("phone"),
           items: cart.items.map((x) => ({
             productId: x.productId,
             quantity: x.quantity,
@@ -181,7 +211,7 @@ export function Checkout() {
           pickupLocation: form.get("pickupLocation"),
         }),
       });
-      navigate(`/orders/${result.reference}`, {
+      navigate(`/account/orders/${result.reference}`, {
         state: { payment: result.payment },
       });
     } catch (err) {
@@ -199,20 +229,35 @@ export function Checkout() {
   return (
     <section className="section checkout">
       <div>
-        <p className="eyebrow">Secure guest checkout</p>
+        <p className="eyebrow">Secure customer checkout</p>
         <h1>Complete your order</h1>
         <p>
-          Pickup: <strong>Oro Restaurant & Lounge, Kilimani</strong>
-          {" "}<a href={pickupUrl} target="_blank" rel="noreferrer">Get directions</a>
+          Pickup: <strong>Oro Restaurant & Lounge, Kilimani</strong>{" "}
+          <a href={pickupUrl} target="_blank" rel="noreferrer">
+            Get directions
+          </a>
         </p>
         <h2>Order summary</h2>
-        {cart.items.map((item) => <p key={item.productId}>{item.name} × {item.quantity} <strong>{money(item.price * item.quantity)}</strong></p>)}
-        <p>Total <strong>{money(cart.total)}</strong></p>
+        {cart.items.map((item) => (
+          <p key={item.productId}>
+            {item.name} × {item.quantity}{" "}
+            <strong>{money(item.price * item.quantity)}</strong>
+          </p>
+        ))}
+        <p>
+          Total <strong>{money(cart.total)}</strong>
+        </p>
         <p>Authoritative total is confirmed by our server.</p>
       </div>
       <form onSubmit={submit}>
-        <Field name="name" label="Full name" />
-        <Field name="email" label="Email" type="email" />
+        <Field name="name" label="Full name" value={customer.name} readOnly />
+        <Field
+          name="email"
+          label="Email"
+          type="email"
+          value={customer.email}
+          readOnly
+        />
         <Field
           name="phone"
           label="M-Pesa phone"
@@ -249,7 +294,10 @@ const Field = ({ label, ...props }) => (
 export function OrderStatus() {
   const { reference } = useParams();
   const [order, setOrder] = useState();
-  useMetadata("Order status | Mercada Impex", "Track your M-Pesa payment and Mercada Impex pickup order.");
+  useMetadata(
+    "Order status | Mercada Impex",
+    "Track your M-Pesa payment and Mercada Impex pickup order.",
+  );
   useEffect(() => {
     let active = true;
     const poll = () =>
@@ -287,16 +335,29 @@ export function OrderStatus() {
           <p>
             Status: <strong>{order.paymentStatus}</strong>
           </p>
-          <p>Authoritative total: <strong>{money(order.total)}</strong></p>
+          <p>
+            Authoritative total: <strong>{money(order.total)}</strong>
+          </p>
           {order.receipt && (
             <p>
               M-Pesa receipt: <strong>{order.receipt}</strong>
             </p>
           )}
           <p>
-            Keep your receipt and collect at Oro Restaurant & Lounge, Kilimani. <a href={pickupUrl} target="_blank" rel="noreferrer">Get directions</a>.
+            Keep your receipt and collect at Oro Restaurant & Lounge, Kilimani.{" "}
+            <a href={pickupUrl} target="_blank" rel="noreferrer">
+              Get directions
+            </a>
+            .
           </p>
-          {order.paymentStatus === "failed" && <Link className="button" to="/checkout">Retry payment</Link>}
+          {order.paymentStatus === "failed" && (
+            <Link className="button" to="/checkout">
+              Retry payment
+            </Link>
+          )}
+          <Link className="button secondary" to="/account/orders">
+            View my orders
+          </Link>
         </>
       )}
     </section>

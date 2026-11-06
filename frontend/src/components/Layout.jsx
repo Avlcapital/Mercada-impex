@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../features/cart/CartContext";
+import { useAuth } from "../features/auth/AuthContext";
 const links = [
   ["/about", "About"],
   ["/services", "Services"],
@@ -12,6 +13,7 @@ export default function Layout({ children }) {
   const [open, setOpen] = useState(false);
   const button = useRef();
   const { items } = useCart();
+  const { customer, logout } = useAuth();
   useEffect(() => {
     if (!open) return;
     const close = (e) => {
@@ -58,6 +60,26 @@ export default function Layout({ children }) {
                 ({items.reduce((s, x) => s + x.quantity, 0)})
               </span>
             </NavLink>
+            {customer ? (
+              <>
+                <NavLink to="/account/orders" onClick={() => setOpen(false)}>
+                  My orders
+                </NavLink>
+                <button
+                  className="text-button"
+                  onClick={async () => {
+                    await logout();
+                    setOpen(false);
+                  }}
+                >
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <NavLink to="/login" onClick={() => setOpen(false)}>
+                Sign in
+              </NavLink>
+            )}
           </div>
         </nav>
       </header>
@@ -73,10 +95,34 @@ export default function Layout({ children }) {
         <div>
           <a href="tel:+254714109708">+254 714 109 708</a>
           <a href="mailto:info@mercadaimpex.com">info@mercadaimpex.com</a>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Lower+Duplex+Apartments+Upperhill&hl=en" target="_blank" rel="noreferrer">Lower Duplex Apartments, Upperhill</a>
-          <a href="https://www.facebook.com/profile.php?id=61580816012074&sfnsn=wa" target="_blank" rel="noreferrer">Facebook</a>
-          <a href="https://www.instagram.com/johariginkenya" target="_blank" rel="noreferrer">Instagram</a>
-          <a href="https://x.com/johariginkenya" target="_blank" rel="noreferrer">X</a>
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=Lower+Duplex+Apartments+Upperhill&hl=en"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Lower Duplex Apartments, Upperhill
+          </a>
+          <a
+            href="https://www.facebook.com/profile.php?id=61580816012074&sfnsn=wa"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Facebook
+          </a>
+          <a
+            href="https://www.instagram.com/johariginkenya"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://x.com/johariginkenya"
+            target="_blank"
+            rel="noreferrer"
+          >
+            X
+          </a>
         </div>
         <p>© {new Date().getFullYear()} Mercada Impex Limited</p>
       </footer>

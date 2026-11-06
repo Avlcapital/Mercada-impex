@@ -48,9 +48,21 @@ export const insights = [
   ],
 ];
 export const values = [
-  ["Professionalism", "We uphold the highest standards of professionalism in every service we provide."],
-  ["Integrity", "Trust and honesty guide our decisions and relationships with stakeholders."],
-  ["Innovation", "We continuously adopt new strategies and technologies to stay ahead in global trade."],
+  [
+    "Professionalism",
+    "We uphold the highest standards of professionalism in every service we provide.",
+  ],
+  [
+    "Integrity",
+    "Trust and honesty guide our decisions and relationships with stakeholders.",
+  ],
+  [
+    "Innovation",
+    "We continuously adopt new strategies and technologies to stay ahead in global trade.",
+  ],
   ["Passion", "Our passion drives us to exceed client expectations every day."],
-  ["Corporate Governance", "We adhere to strong governance standards ensuring fairness and accountability."],
+  [
+    "Corporate Governance",
+    "We adhere to strong governance standards ensuring fairness and accountability.",
+  ],
 ];
